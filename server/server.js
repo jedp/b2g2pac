@@ -2,6 +2,7 @@
 /* -*- mode: js2 -*- */
 
 const
+logger = new (require('../lib/logger')),
 express = require('express');
 
 var app = module.exports = express.createServer();
@@ -26,3 +27,11 @@ app.configure('production', function(){
 app.get('/', function(req, res) {
   res.render('index');
 });
+
+// Maybe run
+//
+if (!module.parent) {
+  app.listen(process.env.PORT || 3000);
+  logger.info("Awsmang listening on port " + app.address().port);
+}
+
