@@ -13,27 +13,45 @@ html
     #content
       != body
 
-    script(src="https://login.persona.org/include.js")
-    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js")
-    script(type='text/javascript')
-        navigator.id.watch({
-            onlogin: function(assertion) {
-                console.log('onlogin()');
-                $('#dologin').hide();
-                $('#auth').show().text('You logged in...');
-            },
-            onlogout: function() {
-                console.log('onlogout()');
-                $('#auth').hide();
-                $('#dologin').show();
-            }
-        });
-
     script
       head.js(
         {jquery:        "/js/jquery.min.js"},
-        {underscore:    "/js/underscore.min.js"}
+        {underscore:    "/js/underscore.min.js"},
+        {persona:       "https://login.persona.org/include.js"}
       );
 
+      // executes when the above js modules have been loaded
       head.ready(function() {
+
+        function log(message) {
+          $("#events").append("<li>" + message + "</li>");
+        }
+
+        navigator.id.watch({
+          onready: function() {
+            log("onready() called");
+          },
+          onlogin: function(assertion) {
+            log("onlogin() called; got an assertion? " + !!assertion);
+            $('#dologin').hide();
+            $('#dologout').show();
+          },
+          onlogout: function() {
+            log("onlogout() called");
+            $('#dologin').show();
+            $('#dologout').hide();
+          }
+        });
+
+        $('#dologin button').click(function() {
+          log("calling request()");
+          navigator.id.request();
+        });
+
+        $('#dologout button').click(function() {
+          log("calling logout()");
+          navigator.id.logout();
+        });
+
+        log("page loaded");
       });
