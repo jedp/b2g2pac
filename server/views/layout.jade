@@ -1,0 +1,21 @@
+!!!5
+html
+  head
+    title b2g2pac
+
+    link(rel='stylesheet', href='/css/style.css')
+  body
+
+    #content
+      != body
+
+    script
+      head.js(
+        {jquery:        "/js/jquery.min.js"},
+        {underscore:    "/js/underscore.min.js"},
+        {backbone:      "/js/backbone.min.js"},
+        {socket_io:     "/socket.io/socket.io.js"}
+      );
+
+      head.ready(function() {
+      });

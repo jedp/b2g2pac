@@ -1,0 +1,30 @@
+{
+    "name": "b2g2pac",
+    "version": "0.0.1",
+    "private": true,
+
+    "description": "Test server for identity + marketplace",
+
+    "dependencies": {
+      "backbone": "0.9.2",
+      "express": "2.5.9",
+      "jade": "0.27.5",
+      "request": "2.9.202",
+      "socket.io": "0.9.10"
+    },
+
+    "devDependencies": {
+        "awsmang-connect": "*",
+        "vows": "0.6.4",
+        "awsbox": "0.2.17"
+    },
+
+    "scripts": {
+        "start": "node server/server.js",
+        "test": "vows test/test*.js --spec"
+    },
+
+    "engines": {
+        "node": ">= 0.6.17"
+    }
+}
