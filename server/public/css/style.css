@@ -54,3 +54,9 @@ table {
 
 /* end of reset */
 
+body {
+    padding: 1em;
+}
+#dologin {
+    display: none;
+}
