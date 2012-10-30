@@ -24,6 +24,7 @@ html
       head.ready(function() {
 
         function log(message) {
+          console.log(message);
           $("#events").append("<li>" + message + "</li>");
         }
 
@@ -51,6 +52,11 @@ html
         $('#dologout button').click(function() {
           log("calling logout()");
           navigator.id.logout();
+        });
+
+        $('#closewin button').click(function() {
+          log("closing Trusty UI");
+          paymentSuccess();
         });
 
         log("page loaded");
